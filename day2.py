@@ -1,6 +1,7 @@
 # Variable
+# Day 2 for variable learning
 
-print("A) built-in functions")
+print("A) Built-in functions")
 
 print(abs(5 + 6j))  # why the returned value is 7.81?
 print(abs(-5.65))
