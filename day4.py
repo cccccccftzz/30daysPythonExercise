@@ -472,10 +472,11 @@ print("Exercise 35".center(80, "-"))
 # Use the string formatting method to display the following:
 radius = 10
 area_of_circle = 3.14 * (radius**2)
-print(f"{radius} = ")
-print(f"{radius = }")  # To take note the difference!!
-print(f"{area_of_circle = }")
+print(f"{radius} = ") # 10 =
+print(f"{radius = }")  # To take note the difference!! #radius = 10
+print(f"{area_of_circle = }") # area_of_circle = 314.0
 print(f"The area of circle of a circle with {radius =} is {area_of_circle:.2f}")
+# The area of circle of a circle with radius =10 is 314.00
 
 print("Exercise 36".center(80, "-"))
 # Make the following using string formatting methods:
