@@ -1,6 +1,5 @@
 # Loops
 
-
 print("Catch up in Preview".center(80, "-"))
 print("While Loop".center(50, "-"))
 count = 0
