@@ -2,7 +2,8 @@
 
 print("Catch up in Preview".center(80, "-"))
 
-fruits = set()  # Creating an empty set
+# Creating an empty set
+fruits = set()  
 print(type(fruits))
 fruits = {"banana", "orange", "mango", "lemon"}
 print(len(fruits))
