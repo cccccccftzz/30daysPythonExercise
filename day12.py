@@ -45,14 +45,12 @@ def used_id_gen_by_user(num_character, num_id):  # num_id = 5
         )
         print(ID)
 
-
 used_id_gen_by_user(16, 5)
 
 print("Exercise 3".center(80, "-"))
 print(
     "Write a function named rgb_color_gen. \nIt will generate rgb colors (3 values ranging from 0 to 255 each)."
 )
-
 
 def rgb_color_gen():
     return f"rgb({randint(0,256)}, {randint(0,256)}, {randint(0,256)})"
@@ -91,7 +89,6 @@ print(
     "Write a function generate_colors \nwhich can generate any number of hexa or rgb colors."
 )
 
-
 def list_of_hexa_colors(num_of_hexa_color):
     populations = "abcdef0123456789"
     # print(random.choices(populations,k=6))
@@ -124,11 +121,9 @@ print(
 # random.shuffle(x)
 # print(x)
 
-
 def shuffle_list(lst):
     random.shuffle(lst)
     return lst
-
 
 print(shuffle_list(["ft", "pig", "fat"]))
 
@@ -136,7 +131,6 @@ print("Exercise 2".center(80, "-"))
 print(
     "Write a function which returns an array of seven random numbers \nin a range of 0-9. All the numbers must be unique."
 )
-
 
 def random_numbers():
     random_num_set = set()
