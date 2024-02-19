@@ -268,7 +268,7 @@ print("Exercise 2".center(80, "-"))
 """
 higher order function: function can be as a parameter or function as a return value
 python closures: Inside a nested function, can access a function within the closing function but outer scope
-python decorators: To modify the function result without modifing the original function by writing a small function to define the pattern
+python decorators: To modify the function result without modifying the original function by writing a small function to define the pattern
 """
 
 print("Exercise 3".center(80, "-"))
@@ -334,6 +334,13 @@ filtered_result = filter(lambda x: is_even(int(x)), number_str)
 print(
     list(filtered_result)
 )  # The script did not change the type of the x, so it still output the original string type
+
+#Correct script and get the list of interger
+result = call_function("filter")
+filtered_result = filter(lambda x: is_even(int(x)), number_str)
+result = call_function("map")
+print(list(result(int, filtered_result)))
+
 
 print("reduce")
 result = call_function("reduce")
@@ -452,7 +459,7 @@ print(result)
 """
 run according to this sequence
 map(lambda x: x * 2, numbers) #2,4,6,...,20
-filter(lambda x: x % 2 == 0,lst) #All the nunmbers are even
+filter(lambda x: x % 2 == 0,lst) #All the numbers are even
 reduce(lambda acc, x: acc + x,lst) #Accumate all list items
 #2+4+6+...+20=110
 This type of the multiple chain script is not readable.
@@ -675,7 +682,7 @@ for country in countries_data:
         and using += with a list and a string will not append the string as an element to the list.
         Mistake 2:
         output_country_dic[language] += list(country['name']) 
-        By usinglist() to a string, it will convert to a list of characters
+        By using list() to a string, it will convert to a list of characters
         Not good practice 1:
         output_country_dic[language] += [country['name']] 
         Can work, but not an effective way to convert a string then using extend +=
@@ -705,15 +712,18 @@ for item in sorted_data:
 
 print("example from lx")
 list_of_dicts = [
-    {"a": ["hello"], "b": ["world", "python"]},
-    {"x": ["python", "coding", "is", "fun"], "y": ["hello"]},
-    {"k": ["openai"], "l": ["gpt"], "m": ["chatgpt", "cool"]},
+    {"a": ["hello"], "b": ["world", "python",'fangting']}, #max length of the value list is 3
+    {"x": ["python", "coding", "is", "fun"], "y": ["hello"]}, #max length of the value list is 4
+    {"k": ["openai"], "l": ["gpt"], "m": ["chatgpt", "cool"]}, #max length of the value list is 2
 ]
 
 # Sorting the list of dictionaries by the length of the longest list in their values
-sorted_list = sorted(list_of_dicts, key=lambda d: max(len(v) for v in d.values()))
+sorted_list = sorted(list_of_dicts, key=lambda d: max(len(v) for v in d.values())) 
+#v here refer to each value under each subdictionary, d here refer to each subdictionary, 
+# here the lambda function is applied to each dictionary in the list, so to use d is correct because it captures each dictionary in the list
 
 print(sorted_list)
+# [{'k': ['openai'], 'l': ['gpt'], 'm': ['chatgpt', 'cool']}, {'a': ['hello'], 'b': ['world', 'python', 'fangting']}, {'x': ['python', 'coding', 'is', 'fun'], 'y': ['hello']}]
 
 print("Exercise 3".center(80, "-"))
 print("Sort out the ten most populated countries.")
