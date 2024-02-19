@@ -51,7 +51,7 @@ for i in range(11):
         tuple_values += (i**power,)
     result_list.append(tuple_values)
 
-print(result_list)
+print(f'{result_list = }')
 
 print("Two ways to concentrate tuples".center(80, "-"))
 
@@ -78,6 +78,7 @@ so the tuple accumulation in each tuple is not able to be avoided.
 
 print("Exercise 4".center(80, "-"))
 countries = [[("Finland", "Helsinki")], [("Sweden", "Stockholm")], [("Norway", "Oslo")]]
+print('''[['FINLAND','FIN', 'HELSINKI'], ['SWEDEN', 'SWE', 'STOCKHOLM'], ['NORWAY', 'NOR', 'OSLO']]''')
 print("My own script".center(80, "-"))
 flattened_list = [
     [item[0].upper() for sublist in countries for item in sublist],
