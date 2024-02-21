@@ -3,7 +3,8 @@
 print("Catch up in Preview".center(80, "-"))
 print("Time Objects to Represent Time".center(80, "-"))
 import datetime
-print(dir(datetime))
+print(dir(datetime)) #dir()
+
 
 from datetime import time
 a = time()
