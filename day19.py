@@ -168,3 +168,55 @@ for child in root:
 
 print('Exercise Level 1'.center(80, "-"))
 print('Exercise 1'.center(80, "-"))
+
+print(f'a) Read obama_speech.txt file and count number of lines and words')
+import re
+from collections import Counter
+
+def count_rows_and_words_in_text(file_path):
+    f = open(file_path) 
+    lines = f.read().splitlines()
+    print(f'The total rows in the file is {len(lines)}') #Count the total rows in the txt
+    word_counts = 0
+    for sentence in lines:
+        regex_pattern = r'\b\w+\b' #\b to find a word boundary, \w to find one word character,+ means one or more times
+        words = re.findall(regex_pattern, sentence)
+        word_counts += len(words)
+    print(f'The total words number is {word_counts}')
+    f.close()
+
+count_rows_and_words_in_text('./data/obama_speech.txt')
+
+print(f'b) Read michelle_obama_speech.txt file and count number of lines and words')
+count_rows_and_words_in_text('./data/michelle_obama_speech.txt')
+
+
+print(f'c) Read donald_speech.txt file and count number of lines and words')
+count_rows_and_words_in_text('./data/donald_speech.txt')
+
+
+print(f'd) Read melina_trump_speech.txt file and count number of lines and words')
+count_rows_and_words_in_text('./data/melina_trump_speech.txt')
+
+print('Exercise 2'.center(80, "-"))
+def find_top_languages(json_file_path, num): # num refer to how many numbers of the top
+    with open(json_file_path, 'r', encoding = 'utf-8') as file:
+        countries_data = json.load(file) #By using json.load() to load the file to dictionary
+    # Argument : It takes file object as a parameter. Return : It return json object.
+    #If it takes the list as input, it return a list also
+    # print(type(countries_data))
+    all_language = [language for country in countries_data for language in country['languages']]
+    language_count = Counter(all_language)
+    top_languages = language_count.most_common(num)
+    reverse_top_languages = [(counts, language) for language, counts in top_languages]
+    return reverse_top_languages
+
+file_path = './data/countries_data.json'
+top_num_languages = find_top_languages(file_path, 10)
+print(top_num_languages)
+
+file_path = './data/countries_data.json'
+top_num_languages = find_top_languages(file_path, 3)
+print(top_num_languages)
+
+print('Exercise 3'.center(80, "-"))
