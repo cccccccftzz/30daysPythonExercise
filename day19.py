@@ -219,4 +219,48 @@ file_path = './data/countries_data.json'
 top_num_languages = find_top_languages(file_path, 3)
 print(top_num_languages)
 
+
 print('Exercise 3'.center(80, "-"))
+print('Read the countries_data.json data file in data directory, create a function that creates a list of the ten most populated countries')
+from collections import defaultdict
+def most_populated_countries(json_file_path, num):
+    with open(json_file_path, 'r', encoding = 'utf-8') as file:
+        countries_data = json.load(file)
+    country_population = {}
+    country_population = [{'country':country['name'], 'population': country['population']} for country in countries_data]
+    # for country in countries_data:
+    #     country_population['country'] = country['name']
+    #     country_population['population'] = country['population']
+    sorted_country_population = sorted(country_population, key = lambda x: x["population"], reverse = True)
+    print(sorted_country_population[:num])
+
+most_populated_countries('./data/countries_data.json', 10)
+most_populated_countries('./data/countries_data.json', 3)
+
+'''
+sample result
+[
+{'country': 'China', 'population': 1377422166},
+{'country': 'India', 'population': 1295210000},
+{'country': 'United States of America', 'population': 323947000},
+{'country': 'Indonesia', 'population': 258705000},
+{'country': 'Brazil', 'population': 206135893},
+{'country': 'Pakistan', 'population': 194125062},
+{'country': 'Nigeria', 'population': 186988000},
+{'country': 'Bangladesh', 'population': 161006790},
+{'country': 'Russian Federation', 'population': 146599183},
+{'country': 'Japan', 'population': 126960000}
+]
+'''
+
+print('Exercise Level 2'.center(80, "-"))
+print('Exercise 4'.center(80, "-"))
+print(f'Extract all incoming email addresses as a list from the email_exchange_big.txt file.')
+with open('./data/email_exchanges_big.txt') as file:
+    txt = file.read()
+    regex_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' #\.: matches the dot separating the domain name from the top-level domain (TLD)
+    #No \ for first few character options: regex_pattern = r'[^A-Za-z]+' 
+    email_address = re.findall(regex_pattern, txt)
+    print(email_address)
+
+print('Exercise 5'.center(80, "-"))
