@@ -264,3 +264,51 @@ with open('./data/email_exchanges_big.txt') as file:
     print(email_address)
 
 print('Exercise 5'.center(80, "-"))
+print('''Find the most common words in the English language. 
+Call the name of your function find_most_common_words, 
+it will take two parameters - a string or a file and a positive integer, 
+indicating the number of words. Your function will return an array of tuples in descending order. ''')
+
+import os
+ 
+ #Def a function to tell the input is a path or string directly
+def is_file_path(input):
+    return os.path.isfile(input)
+
+#The main function to find the top most xx word
+def find_most_common_words(file_path_or_str, num):
+    if is_file_path(file_path_or_str):
+        with open(file_path_or_str, 'r', encoding = 'utf-8') as file:
+            txt = file.read()
+    else:
+        txt = file_path_or_str
+
+    regex_pattern = r'\b\w+\b'
+    words_lst = re.findall(regex_pattern, txt)
+    word_count = Counter(words_lst)
+    most_common_words = word_count.most_common(num)
+    reversed_most_common_words = [(count, word) for word, count in most_common_words]
+    print(reversed_most_common_words)
+
+find_most_common_words('./files/example.txt', 10)
+find_most_common_words('./files/example.txt', 5)
+
+print('Exercise 6'.center(80, "-"))
+# find_most_common_words('C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\obama_speech.txt', 10)
+''' The file path here got syntax error bc the backslash 
+The error you're encountering is due to the backslashes in the file path being interpreted as escape characters in the string. 
+To resolve this, you can use raw string literals (prefix the string with r) or double backslashes. 
+see the solutions below
+'''
+
+find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\obama_speech.txt', 10) #Solution 1: start with r'xxx'
+find_most_common_words('C:\\Users\\fangting.chen\\OneDrive - AECOM\\Reference\\Python\\30daysOfPython\\data\\michelle_obama_speech.txt', 10) #Solution 2: use double \\
+find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\donald_speech.txt', 10)
+find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\melina_trump_speech.txt', 10)
+
+print('Exercise 6'.center(80, "-"))
+print('''Write a python application that checks similarity between two texts. 
+It takes a file or a string as a parameter and 
+it will evaluate the similarity of the two texts. ''')
+
+
