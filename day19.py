@@ -125,7 +125,7 @@ UTF-8 is a widely used character encoding that can represent most of the charact
 '''
 
 print('file with csv Entension'.center(80, "-"))
-#csb used to store tabular data i.e. spreadsheet or database
+#csv used to store tabular data i.e. spreadsheet or database
 import csv
 with open ('csv_sample.csv') as f:
     csv_reader = csv.reader(f, delimiter = ',') #csv.reader is same as 'w' use
@@ -133,11 +133,13 @@ with open ('csv_sample.csv') as f:
     for row in csv_reader:
         if line_count == 0:
             print(f'Column names are: {",".join(row)}')
+            #row is the first title row
             line_count += 1
         else: 
             print(
                 f'\t{row[0]} is a teacher. He lives in {row[1]}, {row[2]}.'
             )    
+            #row[index], index refer to column number, start from column 0 ~2
             line_count += 1
         print(f'Number of lines: {line_count}')
 
@@ -261,7 +263,7 @@ with open('./data/email_exchanges_big.txt') as file:
     regex_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' #\.: matches the dot separating the domain name from the top-level domain (TLD)
     #No \ for first few character options: regex_pattern = r'[^A-Za-z]+' 
     email_address = re.findall(regex_pattern, txt)
-    print(email_address)
+    # print(email_address)
 
 print('Exercise 5'.center(80, "-"))
 print('''Find the most common words in the English language. 
@@ -306,9 +308,188 @@ find_most_common_words('C:\\Users\\fangting.chen\\OneDrive - AECOM\\Reference\\P
 find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\donald_speech.txt', 10)
 find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\melina_trump_speech.txt', 10)
 
-print('Exercise 6'.center(80, "-"))
+print('Exercise 7'.center(80, "-"))
 print('''Write a python application that checks similarity between two texts. 
-It takes a file or a string as a parameter and 
-it will evaluate the similarity of the two texts. ''')
+It takes a file or a string as a parameter and it will evaluate the similarity of the two texts. 
+You may need a couple of functions, function to clean the text(clean_text), function to remove support words(remove_support_words) 
+and finally to check the similarity(check_text_similarity). List of stop words are in the data directory
+''')
+
+#To def a function to judege whether the input is a file path or string
+def is_file_path(input):
+    return os.path.isfile(input)
+
+#To def a function to clean the text & return a list of the words included in the txt
+def clean_text(txt):
+    regex_pattern = r'\b\w+\b'
+    word_list = re.findall(regex_pattern, txt)
+    return word_list
+
+    '''
+    Shall not convert to set in this stage to make the following function more useful     
+    word_set = set(word_lst) 
+    '''
+
+#To def a function to remove the stop words: To take one set input then return a set without stop words
+from data.stop_words import stop_words
+
+def remove_support_words(word_list): 
+    set_stop_words = set(stop_words)
+    word_set = set(word_list)
+    return word_set - set_stop_words 
+#Can directly to use the '-' to minus those stop words
+
+#My own mthod
+# def remove_support_words(word_set):
+#     word_list = list(word_set)
+#     for word in word_list:
+#         if word in stop_words:
+#             # word_list = word_list.remove(word) #Wrong, bc lst.remove() will edit the list in place
+#             word_list.remove(word)
+#     word_set_no_support_word = set(word_list)
+#     return word_set_no_support_word
+
+#To def a function to check the similarity between two txts
+def check_text_similarity(text_or_path_one, text_or_path_two):
+    
+    #To tell the input text or file path for two arguments
+    if is_file_path(text_or_path_one):
+        with open(text_or_path_one, 'r', encoding = 'utf-8') as file_one:
+            txt_one = file_one.read()
+    else:
+        txt_one = text_or_path_one
+
+    if is_file_path(text_or_path_two):
+        with open(text_or_path_two, 'r', encoding = 'utf-8') as file_two:
+            txt_two = file_two.read()
+    else:
+        txt_two = text_or_path_two
+
+    #To clear the txt and return sets of words for two txts
+    word_set_one = clean_text(txt_one)
+    word_set_two = clean_text(txt_two)
+    
+    #To remove the support words in two sets of words
+    word_set_one_no_support_words = remove_support_words(word_set_one)
+    word_set_two_no_support_words = remove_support_words(word_set_two)
+
+    #Similarity = commonword/total word
+    common_word = word_set_one_no_support_words.intersection(word_set_two_no_support_words)
+    count_common_word = len(common_word)
+
+    superset_one_and_two = word_set_one_no_support_words.union(word_set_two_no_support_words)
+    count_superset_word = len(superset_one_and_two)
+
+    count_word_txt_one = len(word_set_one_no_support_words)
+    count_word_txt_two = len(word_set_two_no_support_words)
+
+    similarity = count_common_word / count_superset_word
+    print(f'The similarity between two text is: {similarity}')
+
+#To run with the two text paths or just give two strings
+text_or_path_one=r'C:\\Users\\fangting.chen\\OneDrive - AECOM\\Reference\\Python\\30daysOfPython\\data\\michelle_obama_speech.txt'
+text_or_path_two=r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\melina_trump_speech.txt'
+check_text_similarity(text_or_path_one, text_or_path_two)
 
 
+print('Exercise 8'.center(80, "-"))
+print(f'Find the 10 most repeated words in the romeo_and_juliet.txt')
+def most_repeated_words(file_path_or_str, num):
+    
+    #To tell the input text or file path
+    if is_file_path(file_path_or_str):
+        with open(file_path_or_str, 'r', encoding = 'utf-8') as file:
+            txt = file.read()
+    else:
+        txt= file_path_or_str
+
+    #To clear the txt and return the list of words in the text
+    word_list = clean_text(txt) #Output is the total words list
+    word_list_lower = [word.lower() for word in word_list]
+
+    #To remove the support words in the list regardless of the captial by changing all the words in the list to lower captial
+    word_list_lower = [word for word in word_list_lower if word not in stop_words] #To replace with a list comprehension to avoid a return statmenet
+
+    '''
+    Wrong method, to give a reutrn value inside a loop in a function
+    The issue in your code is that the return statement inside the loop is causing the function to exit prematurely.
+    for word in word_list:
+        if word in stop_words:
+            word_list.remove(word)
+            return word_list
+    '''
+    word_count = Counter(word_list_lower)
+    most_repeated_words = word_count.most_common(num)
+    print(most_repeated_words)
+
+most_repeated_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\romeo_and_juliet.txt', 10)
+    
+print('Exercise 9'.center(80, "-"))
+print('''Read the hacker news csv file and find out the following text''')
+
+print(f'a) Count the number of lines containing python or Python ')
+with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\hacker_news.csv') as file:
+    csv_reader = csv.reader(file, delimiter = ',')
+    
+    line_count = 0
+    count_python = 0
+
+    for row in csv_reader:
+        line_count += 1
+        for element in row:
+            regex_pattern = r'\b[Pp]ython\b'
+            matches = re.search(regex_pattern, element)
+            #Or to use the re.search but with flag
+            # matches = re.search(regex_pattern, element, flags=re.IGNORECASE)  # Ignore case
+            if matches is not None:
+                count_python += 1
+                # print(f'{line_count = }') #Can print out the corresponding line number
+                # print(row) #Can print out the corresponding row content
+                break 
+                #if already find the key word in one element, then end the loop to the next row
+
+    print(count_python)
+
+print('b) Count the number lines containing JavaScript, javascript or Javascript')
+with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\hacker_news.csv') as file:
+    csv_reader = csv.reader(file, delimiter = ',')
+    
+    line_count = 0
+    count_javascript = 0
+
+    for row in csv_reader:
+        line_count += 1
+        for element in row:
+            regex_pattern = r'\b[Jj]ava[Ss]cript\b'
+            matches = re.search(regex_pattern, element)
+            #Or to use the re.search but with flag
+            # matches = re.search(regex_pattern, element, flags=re.IGNORECASE)  # Ignore case
+            if matches is not None:
+                count_javascript += 1
+                # print(f'{line_count = }') #Can print out the corresponding line number
+                # print(row) #Can print out the corresponding row content
+                break 
+                
+    print(count_javascript)
+
+print('c) Count the number lines containing Java and not JavaScript')
+with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\hacker_news.csv') as file:
+    csv_reader = csv.reader(file, delimiter = ',')
+    
+    line_count = 0
+    count_java = 0
+
+    for row in csv_reader:
+        line_count += 1
+        for element in row:
+            regex_pattern = r'\b[Jj]ava\b'
+            matches = re.search(regex_pattern, element)
+            #Or to use the re.search but with flag
+            # matches = re.search(regex_pattern, element, flags=re.IGNORECASE)  # Ignore case
+            if matches is not None:
+                count_java += 1
+                print(f'{line_count = }') #Can print out the corresponding line number
+                print(row) #Can print out the corresponding row content
+                break 
+               
+    print(count_java)
