@@ -48,8 +48,47 @@ url_lists = [
     'https://github.com/cccccccftzz',
 ]
 
-for url in url_lists:
-    webbrowser.open_new_tab(url) #in any default webbrowser
+# for url in url_lists:
+#     webbrowser.open_new_tab(url) #in any default webbrowser
 
 print("Reading from URL".center(80, "-"))
+
+import requests
+'''
+Below all the webpage link are outdated. cannot test.
+
+#Read a txt file from the website
+url = 'https://www.w3.org/TR/PNG/iso_8859-1.txt' # text from a website
+response = requests.get(url)
+print(response)
+print(response.status_code) #404 fail to open
+print(response.headers)
+print(response.text)
+
+#Read a API from the website
+url = 'https://restcountries.eu/rest/v2/all'
+response = requests.get(url)
+print(response)
+print(response.status_code)
+countries = response.json()
+print(countries[:1])
+'''
+
+print("Creating a package".center(80, "-"))
+#Created a mypackage in the same folder directory and created two .py files and one init.py file
+# The init.py is essential for the folder to be recognized by Python as a package.
+#Now the mypackage folder are treated as one package alr
+
+from mypackage import arithmetics, greet
+
+print(arithmetics.add_numbers(1, 2, 3, 4))
+print(arithmetics.subtract(1, 4))
+print(greet.greet_person('Fangting','Chen')) 
+'''
+Syntax:
+from package import module1, module2
+module.function()
+'''
+print('Exercises Level 1'.center(80, "-"))
+
 
