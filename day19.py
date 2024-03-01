@@ -296,17 +296,17 @@ find_most_common_words('./files/example.txt', 10)
 find_most_common_words('./files/example.txt', 5)
 
 print('Exercise 6'.center(80, "-"))
-# find_most_common_words('C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\obama_speech.txt', 10)
+# find_most_common_words('.\data\obama_speech.txt', 10)
 ''' The file path here got syntax error bc the backslash 
 The error you're encountering is due to the backslashes in the file path being interpreted as escape characters in the string. 
 To resolve this, you can use raw string literals (prefix the string with r) or double backslashes. 
 see the solutions below
 '''
 
-find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\obama_speech.txt', 10) #Solution 1: start with r'xxx'
-find_most_common_words('C:\\Users\\fangting.chen\\OneDrive - AECOM\\Reference\\Python\\30daysOfPython\\data\\michelle_obama_speech.txt', 10) #Solution 2: use double \\
-find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\donald_speech.txt', 10)
-find_most_common_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\melina_trump_speech.txt', 10)
+find_most_common_words(r'.\data\obama_speech.txt', 10) #Solution 1: start with r'xxx'
+find_most_common_words('.\\data\\michelle_obama_speech.txt', 10) #Solution 2: use double \\
+find_most_common_words(r'.\data\donald_speech.txt', 10)
+find_most_common_words(r'.\data\melina_trump_speech.txt', 10)
 
 print('Exercise 7'.center(80, "-"))
 print('''Write a python application that checks similarity between two texts. 
@@ -387,8 +387,8 @@ def check_text_similarity(text_or_path_one, text_or_path_two):
     print(f'The similarity between two text is: {similarity}')
 
 #To run with the two text paths or just give two strings
-text_or_path_one=r'C:\\Users\\fangting.chen\\OneDrive - AECOM\\Reference\\Python\\30daysOfPython\\data\\michelle_obama_speech.txt'
-text_or_path_two=r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\melina_trump_speech.txt'
+text_or_path_one=r'.\data\michelle_obama_speech.txt'
+text_or_path_two=r'.\data\melina_trump_speech.txt'
 check_text_similarity(text_or_path_one, text_or_path_two)
 
 
@@ -422,13 +422,13 @@ def most_repeated_words(file_path_or_str, num):
     most_repeated_words = word_count.most_common(num)
     print(most_repeated_words)
 
-most_repeated_words(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\romeo_and_juliet.txt', 10)
+most_repeated_words(r'.\data\romeo_and_juliet.txt', 10)
     
 print('Exercise 9'.center(80, "-"))
 print('''Read the hacker news csv file and find out the following text''')
 
 print(f'a) Count the number of lines containing python or Python ')
-with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\hacker_news.csv') as file:
+with open(r'.\data\hacker_news.csv') as file:
     csv_reader = csv.reader(file, delimiter = ',')
     
     line_count = 0
@@ -451,7 +451,7 @@ with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPyt
     print(count_python)
 
 print('b) Count the number lines containing JavaScript, javascript or Javascript')
-with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\hacker_news.csv') as file:
+with open(r'.\data\hacker_news.csv') as file:
     csv_reader = csv.reader(file, delimiter = ',')
     
     line_count = 0
@@ -473,7 +473,7 @@ with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPyt
     print(count_javascript)
 
 print('c) Count the number lines containing Java and not JavaScript')
-with open(r'C:\Users\fangting.chen\OneDrive - AECOM\Reference\Python\30daysOfPython\data\hacker_news.csv') as file:
+with open(r'.\data\hacker_news.csv') as file:
     csv_reader = csv.reader(file, delimiter = ',')
     
     line_count = 0
