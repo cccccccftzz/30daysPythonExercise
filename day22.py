@@ -62,9 +62,24 @@ else:
 print(f'Exercise 1'.center(80, "-"))
 print('Scrape the following website and store the data as json file(url = \'http://www.bu.edu/president/boston-university-facts-stats/\').')
 
-import requests
-import json
-import webbrowser
+'''
+Import Libraries: Import necessary libraries, including requests for making HTTP requests, json for handling JSON data, webbrowser for opening web pages, and BeautifulSoup for web scraping.
+Define URL: Set the URL of the webpage you want to scrape.
+Make a Request: 
+Web Scraping: Use BeautifulSoup to parse the HTML content of the webpage.
+Extract Title: Extract and print the title of the webpage.
+Find Facts Section: Locate the section containing Quick Facts & Stats.
+Extract Hexagon Data: Extract data from hexagons, including labels and values.
+Extract Facts Categories: Extract data from facts categories, including category names, item texts, and values.
+Combine Data: Combine hexagon data and facts categories data into a single dictionary.
+Convert to JSON: Convert the combined data dictionary to JSON format.
+Save to File: Write the JSON data to a file named 'boston_university_facts.json'.
+Print Status: Print a message indicating whether the facts section was found on the webpage.
+This script essentially fetches information from a specific webpage, extracts relevant data, combines it, converts it to JSON format, and saves it to a file.
+'''
+import requests 
+import json 
+import webbrowser 
 
 url = 'http://www.bu.edu/president/boston-university-facts-stats/'
 response = requests.get(url)
@@ -80,7 +95,6 @@ print(soup.title)  #<title>BU Facts &amp; Stats | Office of the President</title
 print(soup.title.get_text())  #BU Facts & Stats | Office of the President
 # print(soup.body)
 
-print('\nstep1')
 # Find the section containing Quick Facts & Stats
 facts_section = soup.find('section', class_='facts-stats') #Subsection
 
@@ -124,3 +138,33 @@ if facts_section:
     print("Data saved as 'boston_university_facts.json'")
 else:
     print("Facts section not found on the webpage.")
+
+
+print(f'Exercise 2'.center(80, "-"))
+print('Extract the table in this url (https://archive.ics.uci.edu/dataset/882/large-scale+wave+energy+farm) and change it to a json file.')
+
+import requests 
+import json 
+import webbrowser 
+
+
+url = 'https://archive.ics.uci.edu/dataset/882/large-scale+wave+energy+farm'
+response = requests.get(url)
+print(response.status_code)
+# webbrowser.open_new_tab(url) #in any default webbrowser
+
+#Get the soup(content)
+content = response.content
+soup = BeautifulSoup(content, 'html.parser') #The 'html.parser' string refers to a specific parser module in Python that is used for parsing HTML
+
+#Save the content as html for looking the HTML structure
+with open('large-scale_wave_energy_farm.html', 'w', encoding='utf-8') as file:
+    file.write(soup.prettify())
+print(type(soup.prettify()))
+
+#To get the title for the soup
+print(soup.title) 
+print(soup.title.get_text()) # instance.attribute.method()
+
+section = soup.find('table', class_="my-4 table w-full")
+
