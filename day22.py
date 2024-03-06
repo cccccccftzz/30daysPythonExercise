@@ -254,7 +254,7 @@ print_sections(page_py.sections) #page_py = wiki_wiki.page('List_of_presidents_o
 
 
 # Part 2: To define a function to scrap the table inside the link
-def scrape_presidents_data(url, output_html, output_json):
+def scrape_presidents_data(url, output_html='List_of_presidents_of_the_United_States.html', output_json='presidents_data.json'):
     """
     Scrapes data about the Presidents of the United States from a Wikipedia page.
 
