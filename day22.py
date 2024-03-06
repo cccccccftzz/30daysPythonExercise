@@ -197,8 +197,7 @@ print('''Scrape the presidents table and store the data as json(https://en.wikip
 The table is not very structured and the scrapping may take very long time.''')
 
 '''
-Part 1: To try some wikipediaapi existing function
-This exercise can use the wikipedia API to get all the necessary info in the existing wikipedia
+Part 1: To try some wikipediaapi existing function to get all the necessary info in wikipedia
 including, check page exist, page titel, page summary, page URL.
 '''
 
