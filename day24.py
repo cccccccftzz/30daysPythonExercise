@@ -219,5 +219,13 @@ print(numpy_zeroes)
  [0 0 0]]
 '''
 
-numpy_ones = np.ones((3,3),dtype=int,order='C')
-print(numpy_zeroes)
+numpy_ones = np.ones((3,3), dtype=int, order='C')
+print(numpy_ones)
+'''
+[[1 1 1]
+ [1 1 1]
+ [1 1 1]]
+'''
+
+#Only ones and zeros two built-in methods
+
