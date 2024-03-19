@@ -134,3 +134,90 @@ numpy_bool_arr = np.array([-3, -2, 0, 1,2,3], dtype='bool')
 print(numpy_int_arr.dtype)
 print(numpy_float_arr.dtype)
 print(numpy_bool_arr.dtype)
+
+print("Converting types".center(80, "-"))
+
+#Int to float
+numpy_int_arr = np.array([1, 2, 3, 4], dtype='float')
+print(numpy_int_arr) #[1. 2. 3. 4.]
+print(type(numpy_int_arr)) #<class 'numpy.ndarray'>
+print(numpy_int_arr.dtype) #float64
+
+#float to int
+numpy_int_arr = np.array([1., 2., 3., 4.], dtype='int')
+print(numpy_int_arr)
+
+#Int to boolean
+numpy_int_arr = np.array([-3, -2, 0, 1, 2, 3], dtype = 'bool')
+print(numpy_int_arr) #[ True  True False  True  True  True]
+
+#Int to str
+numpy_int_arr = np.array([-3, -2, 0, 1, 2, 3], dtype = '<U21')
+print(numpy_int_arr) #['-3' '-2' '0' '1' '2' '3']
+
+print("Multi-dimensional Arrays".center(80, "-"))
+two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
+print(type(two_dimension_array)) #<class 'numpy.ndarray'>
+print(two_dimension_array)
+print(f'{two_dimension_array.shape = }') #(3, 3)
+print(f'{two_dimension_array.size = }') #9
+print(f'{two_dimension_array.dtype = }') #dtype('int32')
+
+two_dimension_array = np.array([(1, 2, 3)])
+print(f'{two_dimension_array.shape = }') # (1, 3) (row, columns)
+
+print("Getting items from a numpy array".center(80, "-"))
+#2 Dimension Array
+two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
+first_row = two_dimension_array[0]
+second_row = two_dimension_array[1]
+third_row = two_dimension_array[2]
+print(f'{first_row}') #[1 2 3]
+print(f'{second_row}') #[4 5 6]
+print(f'{third_row}') #[7 8 9]
+
+first_column = two_dimension_array[:,0]
+before_first_row = two_dimension_array[:0] # array([], shape=(0, 3), dtype=int32)
+until_first_row = two_dimension_array[:1] #Still means to print until the first row
+second_column = two_dimension_array[:,1]
+third_column = two_dimension_array[:,2]
+print(f'{first_column = }')  #array([1, 4, 7])
+print(f'{before_first_row = }') # array([], shape=(0, 3), dtype=int32)
+print(f'{until_first_row = }') #array([[1, 2, 3]])
+print(f'{second_column = }') #array([2, 5, 8])
+print(f'{third_column = }') #array([3, 6, 9])
+
+print("Slicing Numpy array".center(80, "-"))
+two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
+first_two_rows_and_columns = two_dimension_array[0:2, 0:2]
+print(first_two_rows_and_columns)
+
+print("To reverse the rows and array".center(80, "-"))
+print(two_dimension_array[1::])
+
+print("To reverse the row and column positions".center(80, "-"))
+two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
+print(two_dimension_array[::-1, ::-1]) #reverse the row and column position both
+'''
+[[9 8 7]
+ [6 5 4]
+ [3 2 1]]
+'''
+
+print("To present the missing values".center(80, "-"))
+two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
+two_dimension_array[1, 1] = 55
+two_dimension_array[2, 2] = 44
+print(two_dimension_array)
+
+
+numpy_zeroes = np.zeros((3,3),dtype=int,order='C')
+print(numpy_zeroes)
+'''
+[[0 0 0]
+ [0 0 0]
+ [0 0 0]]
+'''
+
+numpy_ones = np.ones((3,3),dtype=int,order='C')
+print(numpy_zeroes)
