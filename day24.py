@@ -229,3 +229,87 @@ print(numpy_ones)
 
 #Only ones and zeros two built-in methods
 
+twoes = numpy_ones * 2
+print(twoes)
+
+print("reshape".center(80, "-"))
+#reshape
+first_shape = np.array([(1, 2, 3), (4, 5, 6)])
+print(first_shape)
+
+reshaped = first_shape.reshape(3, 2)
+print(reshaped)
+'''
+[[1 2 3]
+ [4 5 6]]
+'''
+
+print("Flatten".center(80, "-"))
+#Flatten
+flattened = reshaped.flatten()
+print(flattened) #[1 2 3 4 5 6]
+
+print("Horizontal stack".center(80, "-"))
+#Horizontal stack
+np_list_one = np.array([1, 2, 3])
+np_list_two = np.array([4, 5, 6])
+print(np_list_one + np_list_two) #[5 7 9]
+print(f'{np.hstack((np_list_one, np_list_two))}') #[1 2 3 4 5 6]
+
+print("Vertical Stack".center(80, "-"))
+print(f'{np.vstack((np_list_one, np_list_two))}') 
+'''
+[[1 2 3]
+ [4 5 6]]
+'''
+
+print("Generating Random Numbers from random module".center(80, "-"))
+random_float = np.random.random()
+print(random_float) #Just Generating ONE random float
+
+random_float = np.random.random(5) #random() method, () stands for how many array number to be generated
+print(random_float) #Generating as an array
+
+random_int = np.random.randint(0, 11) #randint() method, () stands for a range
+print(random_int)  #4
+
+random_int = np.random.randint(0, 11, size=4) #randint() method: size meaning array number
+print(random_int)  #[4 4 7 8]
+
+random_int = np.random.randint(0, 11, size=(4, 2)) #4 rows, 2 cols array with random integer between 0~10
+print(random_int)  #[4 4 7 8]
+
+print("Generating Random Numbers from random module".center(80, "-"))
+#Syntax:: np.random.normal(mu, sigma, size)
+#mu:Mean (“centre”) of the distribution.
+#sigma: Standard deviation (spread or “width”) of the distribution. Must be non-negative.
+
+normal_array = np.random.normal(79, 15, 80)
+print(normal_array)
+'''
+[ 90.80079252  78.28596759  78.02159718  76.41257498  71.60812818
+  74.58027718  72.07787582  77.02227712  65.50652843  95.75141089
+  97.90239649  54.271475    94.60833075  77.70214143 100.44400474
+  78.00670482  76.81492309 107.82887331  92.99657298 100.78859393
+  72.98039648  52.87398747  83.62999237  77.25617463  91.84559147
+  85.39318451  92.38351696 101.20135841  82.47665509  76.52953816
+  99.79583091  77.97359494  79.7813125   80.75846543  70.10124675
+  72.48559649  75.17983081  76.73384076  62.24472454 128.63969039
+ 108.85576976  83.62069328  66.31557409 101.81045652  82.3641682
+  68.05802968  63.77363631  78.13851672  71.07645789  81.18273882
+  89.53894159  61.43266238  69.7722646   95.98699009  85.22723222
+  90.18878734  73.45521083  74.17731291  82.25263192 105.18997118
+  86.63445031  71.4219817   58.71226309  81.9507365   65.37687365
+  65.18232687  71.95241714  55.17432759 115.39346808  94.04932081
+  76.40173586  51.36004233  55.76281688  46.68250778  77.25581026
+  61.53101846  53.8255023   62.38371     97.67199102  77.03840507]
+'''
+#The set of number mean value is 79, the standard devision is 15, and total 80 numbers
+
+print("Numpy and Statistics".center(80, "-"))
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+print(sns.set())
+print(plt.hist(normal_array, color='grey', bins=50))
+
