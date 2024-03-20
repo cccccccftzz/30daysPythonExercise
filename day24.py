@@ -306,10 +306,33 @@ print(normal_array)
 '''
 #The set of number mean value is 79, the standard devision is 15, and total 80 numbers
 
-print("Numpy and Statistics".center(80, "-"))
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-print(sns.set())
-print(plt.hist(normal_array, color='grey', bins=50))
+print("Numpy and Statistics".center(80, "-"))
+#To use the matplot and seaborn module to visualize a set of data
+
+import matplotlib.pyplot as plt 
+#This module provides a MATLAB-like plotting framework in Python.
+
+import seaborn as sns 
+#seaborn is a statistical data visualization library built on top of Matplotlib.
+
+plt.hist(normal_array, color='grey', bins=50)
+#color: You can specify any valid color name or a hexadecimal color code.
+#bins: This argument specifies the number of bins (or bars) to use in the histogram
+
+plt.show() #To type this row to see the histogram plot
+
+
+print("Matrix in numpy".center(80, "-"))
+four_by_four_matrix = np.matrix(np.ones((4, 4), dtype = float))
+print(four_by_four_matrix)
+'''
+[[1. 1. 1. 1.]
+ [1. 1. 1. 1.]
+ [1. 1. 1. 1.]
+ [1. 1. 1. 1.]]
+'''
+
+print("Numpy numpy.arange()".center(80, "-"))
+
 
