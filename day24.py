@@ -320,7 +320,7 @@ plt.hist(normal_array, color='grey', bins=50)
 #color: You can specify any valid color name or a hexadecimal color code.
 #bins: This argument specifies the number of bins (or bars) to use in the histogram
 
-plt.show() #To type this row to see the histogram plot
+# plt.show() #To type this row to see the histogram plot
 
 
 print("Matrix in numpy".center(80, "-"))
@@ -334,5 +334,29 @@ print(four_by_four_matrix)
 '''
 
 print("Numpy numpy.arange()".center(80, "-"))
+#To create values that are evenly spaced within a defined interval
 
+#Normal list: range(starting, stop, step)
+lst = range(0, 11, 2)
+for i in lst:
+    print(i) #0, 2, 4, 6, 8, 10
 
+#To get as an Array: numpy.arrange(starting, stop, step)
+whole_numbers = np.arange(0, 20, 1)
+print(whole_numbers) #[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+odd_numbers = np.arange(1, 20, 2) 
+print(odd_numbers) #[ 1  3  5  7  9 11 13 15 17 19]
+
+print("Creating sequence of numbers using linspace".center(80, "-"))
+
+#numpy.linspace()
+#To create 10 values from 1 to 5 evenly spaced.
+linspace_example = np.linspace(1.0, 5.0, num=10)
+print(linspace_example) #[1.         1.44444444 1.88888889 2.33333333 2.77777778 3.22222222 3.66666667 4.11111111 4.55555556 5.        ]
+
+#Not to include the last value in the interval but still with 10 spaces
+linspace_example = np.linspace(1.0, 5.0, num=10, endpoint=False)
+print(linspace_example)
+
+#numpy.logspace() in python with example
+#To return 
