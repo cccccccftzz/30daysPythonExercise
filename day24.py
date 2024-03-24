@@ -49,23 +49,23 @@ print(f'Two dimension array:', numpy_two_dimension_list.tolist())
 print("Creating numpy array from tuple".center(80, "-"))
 # Creating tuple in python
 python_tuple = (1, 2, 3, 4, 5)
-print(type(python_tuple))
-print(f'{python_tuple}')
+print(type(python_tuple)) #class' tuple
+print(f'{python_tuple}') #(1, 2, 3, 4, 5)
 
 numpy_array_from_tuple = np.array(python_tuple)
-print(type(numpy_array_from_tuple))
-print(f'{numpy_array_from_tuple}')
+print(type(numpy_array_from_tuple)) #<class 'numpy.ndarray'>
+print(f'{numpy_array_from_tuple}') #[1 2 3 4 5]
 
 print("Shape of numpy array".center(80, "-"))
 nums = np.array([1, 2, 3, 4, 5])
-print(nums)
-print(nums.shape)
-print(numpy_two_dimension_list)
-print(numpy_two_dimension_list.shape)
+print(nums) #[1 2 3 4 5]
+print(nums.shape) #(5,)
+print(numpy_two_dimension_list) 
+print(numpy_two_dimension_list.shape) #(3, 3)
 three_by_four_array = np.array([[0, 1, 2, 3],
                                [4, 5, 6, 7],
                                [8, 9, 10, 11]])
-print(three_by_four_array.shape)
+print(three_by_four_array.shape) #(3, 4)
 
 print("Data type of numpy array".center(80, "-"))
 int_lists = [-3, -2, -1, 0, 1, 2, 3]
@@ -82,8 +82,8 @@ numpy_array_from_list = np.array([1, 2, 3, 4, 5])
 two_dimensional_list = np.array([[0, 1, 2],
                                  [3, 4, 5],
                                  [6, 7, 8]])
-print({numpy_array_from_list.size})
-print({two_dimensional_list.size})
+print({numpy_array_from_list.size}) #{5}
+print({two_dimensional_list.size}) #{9}
 
 print("Mathematical Operation using numpy".center(80, "-"))
 numpy_array_from_list = np.array([1, 2, 3, 4, 5])
@@ -193,9 +193,16 @@ print("Slicing Numpy array".center(80, "-"))
 two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
 first_two_rows_and_columns = two_dimension_array[0:2, 0:2]
 print(first_two_rows_and_columns)
+'''
+[[1 2]
+ [4 5]]'''
 
 print("To reverse the rows and array".center(80, "-"))
+two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
 print(two_dimension_array[1::])
+'''
+[[4 5 6]
+ [7 8 9]]'''
 
 print("To reverse the row and column positions".center(80, "-"))
 two_dimension_array = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
@@ -252,7 +259,6 @@ flattened = reshaped.flatten()
 print(flattened) #[1 2 3 4 5 6]
 
 print("Horizontal stack".center(80, "-"))
-#Horizontal stack
 np_list_one = np.array([1, 2, 3])
 np_list_two = np.array([4, 5, 6])
 print(np_list_one + np_list_two) #[5 7 9]
@@ -306,7 +312,7 @@ print(normal_array)
   76.40173586  51.36004233  55.76281688  46.68250778  77.25581026
   61.53101846  53.8255023   62.38371     97.67199102  77.03840507]
 '''
-#The set of number mean value is 79, the standard devision is 15, and total 80 numbers
+#The set of number mean value is 79, the standard deviation is 15, and total 80 numbers
 
 
 print("Numpy and Statistics".center(80, "-"))
@@ -361,7 +367,6 @@ linspace_example = np.linspace(1.0, 5.0, num=10, endpoint=False)
 print(linspace_example)
 
 #numpy.logspace() in python with example
-#To return 
 logspace_example = np.logspace(2.0, 4.0, num=4)
 print(logspace_example) #[  100.           464.15888336  2154.43469003 10000.        ]
 #it generates 4 numbers spaced evenly on a logarithmic scale between 10^2 and 10^4
@@ -378,14 +383,14 @@ indices = np.arange(num)
 values = 10**(start + indices * (stop - start) / (num - 1))
 
 # Plotting
-# plt.figure(figsize=(8, 6))
-# plt.plot(indices, values, marker='o', linestyle='-')
-# plt.title('Values on Logarithmic Scale')
-# plt.xlabel('Index')
-# plt.ylabel('Value')
-# plt.xticks(indices)
-# plt.grid(True)
-# # plt.show()
+plt.figure(figsize=(8, 6))
+plt.plot(indices, values, marker='o', linestyle='-')
+plt.title('Values on Logarithmic Scale')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.xticks(indices)
+plt.grid(True)
+plt.show()
 
 #To check the size of any array
 x = np.array([1, 2, 3], dtype = np.complex128)
@@ -667,7 +672,7 @@ the function returns the smallest value among them as the mode.'''
 # plt.show()
 
 print("Linear Algebra".center(80, "-"))
-#numpy.dot(): Dot Product in Python using Numpy
+#numpy.dot(): Dot Product
 f = np.array([1, 2, 3])
 g = np.array([4, 5, 6])
 # [1, 2, 3] * [4, 5, 6]
@@ -759,5 +764,4 @@ samples = 100000
 x = np.random.normal(mu, sigma, samples)
 ax = sns.displot(x)
 ax.set(xlabel='x', ylabel='y')
-plt.show()
-
+# plt.show()
