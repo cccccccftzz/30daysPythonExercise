@@ -227,4 +227,133 @@ min       54.263133     64.700127
 max       78.998742    269.989699
 '''
 
+print("Modifying a DataFrame".center(80, "-"))
+
+#To crreate a data set first
+data = [
+        {'Name':'Fangting', 'Country':'China', 'City':'Shanghai'},
+    {'Name':'KK', 'Country':'Malaysia', 'City':'Ipoh'},
+    {'Name':'John', 'Country':'Singapore', 'City':'Jurong East'}
+]
+df = pd.DataFrame(data)
+print(df)
+
+#Adding a new column
+weights = [80, 50, 70]
+df['Weight'] = weights
+heights = [166, 160, 180]
+df['Height'] = heights
+print(df)
+
+#Modifying column values
+df['Height'] = df['Height'] * 0.01
+print(df)
+
+def calculate_bmi():
+    weights = df['Weight']
+    heights = df['Height']
+    bmi = []
+    for w,h in zip(weights, heights):
+        b = w / (h * h)
+        bmi.append(b)
+    return bmi
+
+bmi = calculate_bmi()
+
+df['BMI'] = bmi
+df['BMI'] = round(df['BMI'], 1) #To round up an interger data by using round(x,1)
+
+print(df)
+
+birth_year = ['1769', '1985', '1990']
+current_year = pd.Series(2024, index=[0, 1, 2])
+df['Birth Year'] = birth_year
+df['Current Year'] = current_year
+print(df)
+'''
+       Name    Country         City  Weight  Height   BMI  Birth Year  Current Year  Age
+0  Fangting      China     Shanghai      80    1.66  29.0        1769          2024  255
+1        KK   Malaysia         Ipoh      50    1.60  19.5        1985          2024   39
+2      John  Singapore  Jurong East      70    1.80  21.6        1990          2024   34
+'''
+
+print("Checking data types of Column values".center(80, "-"))
+print(df.Weight.dtype) #int64, Weight here is the index but without ''
+
+print(df['Birth Year'].dtype) #Object
+
+df['Birth Year'] = df['Birth Year'].astype('int') #To redefine the data type from object to int
+print(df['Birth Year'].dtype) #int32
+
+df['Current Year'] = df['Current Year'].astype('int')
+print(df['Current Year'].dtype) #int32
+
+ages = df['Current Year'] - df['Birth Year']
+df['Age'] = ages
+print(df)
+
+mean = (35 + 30) / 2
+print('Mean', mean)
+
+print(df[df['Age'] > 120]) 
+#df['Age'] refer to one list of all the dataset, then df[xxx] will print all the data related to xx index
+
+print(df[df['Age'] < 120 ])
+
+print("Exercise 1~3".center(80, "-"))
+print("Read the hacker_news.csv file from data directory, Get the first five rows & last five rows".center(80, "-"))
+
+import pandas as pd
+
+df = pd.read_csv('.\data\hacker_news.csv')
+
+print("first 5 rows".center(80, "-"))
+print(df.head())
+
+print("Last 5 rows".center(80, "-"))
+print(df.tail())
+
+
+print("Exercise 4".center(80, "-"))
+print("Get the title column as pandas series".center(80, "-"))
+print(df['title'])
+
+
+print("Exercise 5".center(80, "-"))
+print(
+    '''
+Count the number of rows and columns
+Filter the titles which contain python
+Explore the data and make sense of it'''
+.center(80, "-"))
+
+
+print("To Filter the titles which contain python".center(80, "-"))
+import re
+
+#Method 1: To access the matched data one by one (Least preferred)
+'''
+for title in df['title']:
+    regex_pattern = r'\b[Pp]ython\b'
+    matches = re.search(regex_pattern, title)
+    if matches is not None:
+        print(df[df['title'] == title])
+'''
+
+#Method 2: To store the matches values and access them in the end by for loop (Still not so good)
+matched_title = []
+
+for title in df['title']:
+    regex_pattern = r'\b[Pp]ython\b'
+    matches = re.search(regex_pattern, title)
+    if matches is not None:
+        matched_title.append(title)
+
+matched_df = df[df['title'].isin(matched_title)] #.isin() to judge the filtered title 
+print(matched_df)
+
+#Method 3: Straightly to judge for the dataframe (Best)
+regex_pattern = r'\b[Pp]ython\b'
+matched_df = df[df['title'].str.contains(regex_pattern, regex=True)]
+print(matched_df)
 
