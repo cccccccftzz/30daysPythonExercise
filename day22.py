@@ -314,7 +314,7 @@ def scrape_presidents_data(url, output_html='List_of_presidents_of_the_United_St
     '''
 
     print(f'step 3: To extract the table data')
-    for row     in table[0].find_all('tr')[1:]:  # [1:] skip the headrow
+    for row in table[0].find_all('tr')[1:]:  # [1:] skip the headrow
         row_data = [td.text.strip() for td in row.find_all(['th', 'td']) if 'style' not in td.attrs]
 
         #Clean the data including \n and [xx]
